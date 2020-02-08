@@ -52,6 +52,10 @@ def home():
         elif '@' not in email and '@' not in confirm:
             error = 'Please provide a valid email'
             return render_template('home.html', error=error)
+        elif myEmail == confirm:
+            if '@' not in email and '@' not in confirm:
+                error = 'Please provide a valid email'
+                return render_template('home.html', error=error)
         else:
             msg = Message(f'{sub}', recipients=[myEmail])
             msg.html = f"<p>From: {name}<br>Email: {email}<br><br>Subject:{sub}<br><br>{content}<br><br>To send a response, please go click <b><a href='https://www.bondrobotics.tech'>here</a></b>.</p>"
@@ -63,6 +67,9 @@ def home():
 
             flash(f'Thank you {name} for your message, Fyah Events will respond to you soon!')
             return redirect(url_for('home'))
+        # else:
+        #     error = 'Your email did not match. Please provide matching emails'
+        #     return render_template('home.html', error=error)
 
 @app.route('/login')
 def login():

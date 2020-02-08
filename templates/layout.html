@@ -66,6 +66,11 @@
 
 {% block contact %}{% endblock %}
 
+<!-- flash messages -->
+{% for messages in get_flashed_messages() %}
+  <p><b class="w3-text-green">{{ messages }}</b></p>
+{% endfor %}
+
 </div>
 
 <!-- Footer -->
