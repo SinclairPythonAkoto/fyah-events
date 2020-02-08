@@ -8,9 +8,9 @@ app = Flask(__name__)
 def home():
     return render_template('home.html')
 
-@app.route('/gallery')
+@app.route('/login')
 def gallery():
-    return render_template('gallery.html')
+    return render_template('login.html')
 
 
 
