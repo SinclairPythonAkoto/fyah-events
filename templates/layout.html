@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fyah Events</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="ffka-sc-photo.css" type="text/css">
+  <script src="jquery-2.2.4.min.js"></script>
+  <script src="https://kit.fontawesome.com/fbfdd5a072.js" crossorigin="anonymous"></script>
+  <style>
+  html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
+  .mySlides {display:none}
+  .w3-tag, .fa {cursor:pointer}
+  .w3-tag {height:15px;width:15px;padding:0;margin-top:6px}
+  .bk {
+    background-color: black;
+  }
+  </style>
+</head>
+<body class="bk">
+
+<!-- Links (sit on top) -->
+<div class="w3-top">
+  <div class="w3-row w3-large w3-black">
+    <div class="w3-col s2">
+      <a href="#" class="w3-button w3-block">Home</a>
+    </div>
+    <div class="w3-col s2">
+      <a href="#about" class="w3-button w3-block">About</a>
+    </div>
+    <div class="w3-col s2">
+      <a href="#gallery" class="w3-button w3-block">Gallery</a>
+    </div>
+    <div class="w3-col s2">
+      <a href="#clients" class="w3-button w3-block">Clients</a>
+    </div>
+    <div class="w3-col s2">
+      <a href="#contact" class="w3-button w3-block">Contact </a>
+    </div>
+    <div class="w3-col s2">
+      <a href="#login" class="w3-button w3-block">Login</a>
+    </div>
+  </div>
+</div>
+
+<!-- Content -->
+<div class="w3-content" style="max-width:1100px;margin-top:80px;margin-bottom:80px">
+
+  <div class="w3-panel w3-center w3-text-white">
+    <img src="/static/fyah_events_logo.jpg" alt="Fyah Events logo" title="Fyah Events" style="width: 100%">
+    <h1><b>Fyah Events</b></h1>
+    <p><em>Proud to build memories and reputation</em></p>
+  </div>
+
+  <!-- Grid -->
+  <div class="w3-row w3-container">
+    <div class="w3-center w3-padding-64">
+      <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16 w3-text-white">What We Offer</span>
+    </div>
+    <div class="w3-col l3 m6 w3-grey w3-container w3-padding-16">
+      <h3>Clubs</h3>
+      <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+    </div>
+
+    <div class="w3-col l3 m6 w3-light-grey w3-container w3-padding-16">
+      <h3>Bars</h3>
+      <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+    </div>
+
+    <div class="w3-col l3 m6 w3-dark-grey w3-container w3-padding-16">
+      <h3>Events</h3>
+      <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+    </div>
+
+    <div class="w3-col l3 m6 w3-black w3-container w3-padding-16">
+      <h3>Festivals</h3>
+      <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+    </div>
+
+    <div class="w3-col l3 m6 w3-dark-grey w3-container w3-padding-16">
+      <h3>Corporate</h3>
+      <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+    </div>
+
+    <div class="w3-col l3 m6 w3-black w3-container w3-padding-16">
+      <h3>Christmas parties</h3>
+      <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+    </div>
+
+    <div class="w3-col l3 m6 w3-light-grey w3-container w3-padding-16">
+      <h3>Cocktail & Celebration parties</h3>
+      <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+    </div>
+
+    <div class="w3-col l3 m6 w3-grey w3-container w3-padding-16">
+      <h3>Grand Openings</h3>
+      <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+    </div>
+  </div>
+
+{% block content %}{% endblock %}
+
+{% block slideshow %}{% endblock %}
+
+{% block clients %}{% endblock %}
+
+{% block contact %}{% endblock %}
+
+</div>
+
+<!-- Footer -->
+
+<footer class="w3-container w3-padding-32 w3-light-grey w3-center">
+  <a href="{{ url_for('home') }}" class="w3-button w3-black w3-margin"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  <h4>Find us on social media</h4>
+  <div class="w3-xlarge w3-section">
+    <a href="https://www.facebook.com/fyahevents"><i class="fab fa-facebook-f w3-hover-opacity" title="Visit our Facebook page"></i></a>
+    <a href="https:www.instagram.com/fyahevents"><i class="fab fa-instagram w3-hover-opacity" title="Visit our Instagram page"></i></a>
+    <a href="#"><i class="fas fa-sms w3-hover-opacity" title="Click here to send us a message!"></i></a>
+  </div>
+  <p>
+    © 2018 Fyah Events
+  </p>
+  <p>
+    Created by
+    <a href="https://www.bondrobotics.tech" title="BondRobotics Homepage" target="_blank" class="w3-text-blue">
+      BondRobotics
+    </a>
+  </p>
+</footer>
+
+
+<script>
+// Slideshow
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function currentDiv(n) {
+  showDivs(slideIndex = n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demodots");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length} ;
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" w3-white", "");
+  }
+  x[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " w3-white";
+}
+</script>
+<script src="ffka-sc-photo.js" type="text/javascript"></script>
+</body>
+</html>
