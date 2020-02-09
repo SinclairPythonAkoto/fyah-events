@@ -96,10 +96,27 @@ def logout():
     flash('See you soon Fyah Events ©!')
     return redirect(url_for('home'))
 
-@app.route('/email')
+@app.route('/email', methods=['GET', 'POST'])
 @login_required
 def email():
-    return render_template('email.html')
+    if request.method == 'GET':
+        return render_template('email.html')
+    else:
+        person = request.form.get("sendTo")
+        email = request.form.get("emailTo")
+        sub = request.form.get("sub")
+        content = request.form.get("email_content")
+        if '@' not in email:
+            error = 'Your message did not send. Please provide a valid email'
+            return render_template('email.html', error=error)
+        else:
+            msg = Message(f'{sub}', recipients=[email.lower()])
+            msg.body = f'Hi {person}!\n\nThank you for showing interest in Fyah Events ©.\n\n{content}\n\nKind regards\n\nFyah Events ©'
+            with app.open_resource('fyah_events_logo.jpg') as logo:
+                msg.attach('fyah_events_logo.jpg', 'image/jpeg', logo.read())
+            mail.send(msg)
+            flash(f'Your email has been sent to {person}!')
+    return render_template('admin.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

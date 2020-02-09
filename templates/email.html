@@ -19,6 +19,9 @@
     <button class="w3-button w3-light-grey w3-padding-large" type="submit">
       <i class="fa fa-paper-plane"></i> SEND EMAIL
     </button>
+    {% if error %}
+      <em class="w3-text-red"><b>{{ error }}</b></em>
+    {% endif %}
   </p>
 
 {% endblock %}
