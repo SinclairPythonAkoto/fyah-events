@@ -121,10 +121,31 @@ def email():
             flash(f'Your email has been sent to {person}!')
     return render_template('admin.html')
 
-@app.route('/sms')
+@app.route('/sms', methods=['GET', 'POST'])
 @login_required
 def sms():
-    return render_template('sms.html')
+    if request.method == 'GET':
+        return render_template('sms.html')
+    else:
+        name = request.form.get('name')
+        num = request.form.get('number')
+        txt = request.form.get('txt_content')
+        from clockwork import clockwork
+        api = clockwork.API('9347aab600cbf889dac37eafbbff00c708a65e52',)	# this has been left blank to protect API identity
+
+        message = clockwork.SMS(
+		    to = f'{num}',
+            message = f'Hi {name}!\n\n{txt}\n\nFyah Events',
+		    from_name='Fyah Events') # from_name can max 11 characters long.
+
+        response = api.send(message)
+
+        if response.success:
+            flash(f"Your text to {name} was successfully sent!")
+            return render_template('admin.html')
+        else:
+            error = "Something went wrong, please try again!"
+            return render_template('sms.html', error=error)
 
 if __name__ == '__main__':
     app.run(debug=True)
