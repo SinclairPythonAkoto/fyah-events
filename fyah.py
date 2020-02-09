@@ -111,7 +111,10 @@ def email():
             return render_template('email.html', error=error)
         else:
             msg = Message(f'{sub}', recipients=[email.lower()])
-            msg.body = f'Hi {person}!\n\nThank you for showing interest in Fyah Events ©.\n\n{content}\n\nKind regards\n\nFyah Events ©'
+            # msg.body = f'Hi {person}!\n\nThank you for showing interest in Fyah Events ©.\n\n{content}\n\nKind regards\n\nFyah Events ©'
+
+            msg.html = f"<p>Hi {person}!</p><br><p>Thank you for showing interest in Fyah Events ©.</p><br><p>{content}</p><br><p>Kind regards</p><br><p><a href='https://www.bondrobotics.tech'>Fyah Events ©</a></b></p>"
+
             with app.open_resource('fyah_events_logo.jpg') as logo:
                 msg.attach('fyah_events_logo.jpg', 'image/jpeg', logo.read())
             mail.send(msg)
