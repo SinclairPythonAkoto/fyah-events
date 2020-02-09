@@ -130,11 +130,17 @@ def sms():
         name = request.form.get('name')
         num = request.form.get('number')
         txt = request.form.get('txt_content')
+
+        # convert to international UK number format
+        list_num = list(num)
+        list_num[0] = '44'
+        new_num = "".join(list_num)
+
         from clockwork import clockwork
         api = clockwork.API('9347aab600cbf889dac37eafbbff00c708a65e52',)	# this has been left blank to protect API identity
 
         message = clockwork.SMS(
-		    to = f'{num}',
+		    to = f'{new_num}',
             message = f'Hi {name}!\n\n{txt}\n\nFyah Events',
 		    from_name='Fyah Events') # from_name can max 11 characters long.
 
