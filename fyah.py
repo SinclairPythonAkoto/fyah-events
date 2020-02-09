@@ -68,7 +68,7 @@ def home():
             flash(f'Thank you {name} for your message, Fyah Events © will respond to you soon!')
             return redirect(url_for('home'))
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
     admin = request.form.get("username")

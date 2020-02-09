@@ -2,13 +2,16 @@
 
 {% block content %}
 
-<form action="/" method="post" id="login">
-  <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Name" required name="name"></p>
+<form action="{{ url_for('login') }}" method="post" id="login">
+  <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Name" required name="username"></p>
   <p><input class="w3-input w3-padding-16 w3-border" type="password" placeholder="Enter password" required name="password"></p>
   <p>
     <button class="w3-button w3-light-grey w3-padding-large" type="submit">
       <i class="fas fa-sign-in-alt"></i> Login
     </button>
+    {% if error %}
+      <em class="w3-text-red"><b>{{ error }}</b></em>
+    {% endif %}
   </p>
 </form>
 
