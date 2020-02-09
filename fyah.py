@@ -79,11 +79,15 @@ def login():
         if admin == 'admin' and admin_pw == '1234':
             session['logged_in'] = True
             flash(f'Welcome back Fyah Events ©!')
-            return redirect(url_for('home'))
+            return redirect(url_for('admin'))
         else:
             error = "Invalid username and/or password.  Only Fyah Events © has access to login."
     return render_template('login.html', error=error)
 
+@app.route('/admin')
+@login_required
+def admin():
+    return render_template('admin.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
