@@ -1,0 +1,25 @@
+{% extends "adminlayout.html" %}
+
+{% block content %}
+
+<div class="w3-center w3-padding-64" id="sendMail">
+  <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16 w3-text-white">Send SMS</span><br><br>
+  <p class="w3-medium w3-text-white">
+    <em><b>Respond to your clients by sending them an SMS</b></em>
+  </p>
+</div>
+
+<form action="#" method="post">
+  <p><input class="w3-input w3-padding-16 w3-border" type="number" placeholder="Number" required name="num"></p>
+  <label class="w3-text-white" for="messageBox">Write your message below:</label>
+  <textarea id="messageBox" class="w3-input w3-padding-16 w3-border" type="text" placeholder="Message" name="email_content" rows="8" cols="50" title="Write your message here" required></textarea>
+  <p>
+    <button class="w3-button w3-light-grey w3-padding-large" type="submit">
+      <i class="fa fa-paper-plane"></i> SEND EMAIL
+    </button>
+    {% if error %}
+      <em class="w3-text-red"><b>{{ error }}</b></em>
+    {% endif %}
+  </p>
+
+{% endblock %}

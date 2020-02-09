@@ -121,5 +121,10 @@ def email():
             flash(f'Your email has been sent to {person}!')
     return render_template('admin.html')
 
+@app.route('/sms')
+@login_required
+def sms():
+    return render_template('sms.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
