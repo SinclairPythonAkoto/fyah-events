@@ -96,5 +96,10 @@ def logout():
     flash('See you soon Fyah Events ©!')
     return redirect(url_for('home'))
 
+@app.route('/email')
+@login_required
+def email():
+    return render_template('email.html')
+
 if __name__ == '__main__':
     app.run(debug=True)

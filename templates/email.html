@@ -1,0 +1,20 @@
+{% extends "adminlayout.html" %}
+
+{% block content %}
+
+<p class="w3-text-white w3-center" id="sendMail">
+  <b>Respond back to your clients by writing them an email</b>
+</p>
+<form action="{{ url_for('email') }}" method="post">
+  <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Name" required name="sendTo"></p>
+  <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Send to" required name="emailTo"></p>
+  <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Subject" required name="sub"></p>
+  <label class="w3-text-white" for="messageBox">Write your message below:</label>
+  <textarea id="messageBox" class="w3-input w3-padding-16 w3-border" type="text" placeholder="Message" name="email_content" rows="8" cols="50" title="Write your message here" required></textarea>
+  <p>
+    <button class="w3-button w3-light-grey w3-padding-large" type="submit">
+      <i class="fa fa-paper-plane"></i> SEND EMAIL
+    </button>
+  </p>
+
+{% endblock %}
