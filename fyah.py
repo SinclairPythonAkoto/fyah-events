@@ -65,16 +65,24 @@ def home():
 
             mail.send(msg)
 
-            flash(f'Thank you {name} for your message, Fyah Events will respond to you soon!')
+            flash(f'Thank you {name} for your message, Fyah Events © will respond to you soon!')
             return redirect(url_for('home'))
-        # else:
-        #     error = 'Your email did not match. Please provide matching emails'
-        #     return render_template('home.html', error=error)
 
 @app.route('/login')
 def login():
-    return render_template('login.html')
-
+    error = None
+    admin = request.form.get("username")
+    admin_pw = request.form.get("password")
+    if request.method == 'GET':
+        return render_template('login.html')
+    else:
+        if admin == 'admin' and admin_pw == '1234':
+            session['logged_in'] = True
+            flash(f'Welcome back Fyah Events ©!')
+            return redirect(url_for('home'))
+        else:
+            error = "Invalid username and/or password.  Only Fyah Events © has access to login."
+    return render_template('login.html', error=error)
 
 
 if __name__ == '__main__':
