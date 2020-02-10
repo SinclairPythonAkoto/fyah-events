@@ -72,9 +72,31 @@ def home():
                 flash(f'Thank you {name} for your message, Fyah Events © will respond to you soon!')
                 return redirect(url_for('home'))
 
-@app.route('/sendSMS')
+@app.route('/sendSMS', methods=['GET', 'POST'])
 def sendSMS():
-    return render_template('sendSMS.html')
+    if request.method == 'GET':
+        return render_template('sendSMS.html')
+    else:
+        name = request.form.get('name')
+        num = request.form.get('number')
+        txt = request.form.get('txt_content')
+
+        from clockwork import clockwork
+        api = clockwork.API('9347aab600cbf889dac37eafbbff00c708a65e52',)	# this has been left blank to protect API identity
+
+        message = clockwork.SMS(
+		    to = '447481790498',
+            message = f'From: {name}\nNumber: {number}\n\n{txt}\n\nFyah Events',
+		    from_name='Fyah Events') # from_name can max 11 characters long.
+
+        response = api.send(message)
+
+        if response.success:
+            flash(f"Thanks {name}, your text was successfully sent! You will recieve a qoutefrom Fyah Events © soon.")
+            return render_template('sendSMS.html')
+        else:
+            error = "Something went wrong, please try again!"
+            return render_template('sendSMS.html', error=error)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

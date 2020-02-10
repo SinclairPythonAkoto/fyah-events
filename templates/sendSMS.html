@@ -9,7 +9,7 @@
   </p>
 </div>
 
-<form action="#" method="post">
+<form action="{{ url_for('sendSMS') }}" method="post">
   <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Name" required name="name"></p>
   <p><input class="w3-input w3-padding-16 w3-border" type="number" placeholder="Your mobile number: 07123456789" required name="number"></p>
   <label class="w3-text-white" for="messageBox">Write your message below:</label>
