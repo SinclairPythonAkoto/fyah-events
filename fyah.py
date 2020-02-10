@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, render_template, url_for, request, redirect, flash, session
 from functools import wraps
 from flask_mail import Mail, Message
@@ -11,9 +13,9 @@ app.config.update(dict(
     MAIL_PORT = 587,
     MAIL_USE_TLS = True,
     MAIL_USE_SSL = False,
-    MAIL_USERNAME = 'sinclairpythonakoto.mail@gmail.com',
-    MAIL_PASSWORD = 'Python2020',
-    MAIL_DEFAULT_SENDER = ('Fyah Events ©', 'sinclairpythonakoto.mail@gmail.com'), #('NAME OR TITLE OF SENDER', 'SENDER EMAIL ADDRESS')
+    MAIL_USERNAME = os.getenv('GMAIL_EMAIL'),
+    MAIL_PASSWORD = os.getenv('GMAIL_PW'),
+    MAIL_DEFAULT_SENDER = ('Fyah Events ©', os.getenv('GMAIL_EMAIL')), #('NAME OR TITLE OF SENDER', 'SENDER EMAIL ADDRESS')
     MAIL_MAX_EMAILS = 25
 ))
 
@@ -48,7 +50,7 @@ def home():
         content = request.form.get("message_content")
 
         # this will be the email address that the message will be sent to
-        myEmail = 'sinclair.python@gmail.com'
+        myEmail = os.getenv('GMAIL_EMAIL')
 
         if '@' not in email:
             error = 'Your message did not send. Please provide a valid email'
@@ -61,8 +63,8 @@ def home():
                 error = 'Please provide a valid email'
                 return render_template('home.html', error=error)
             else:
-                msg = Message(f'{sub}', recipients=[myEmail, 'info@fyahevents.com'])
-                msg.html = f"<p>From: {name}<br>Email: {email}<br>Contact Number: {number}<br>Mobile Number: {mobile}<br><br>{content}<br><br>To send a response, please click <b><a href='https://www.bondrobotics.tech'>here</a></b>.</p>"
+                msg = Message(f'{sub}', recipients=[myEmail, os.getenv('INFO_MAIL')])
+                msg.html = f"<p>From: {name}<br>Email: {email}<br>Contact Number: {number}<br>Mobile Number: {mobile}<br><br>{content}<br><br>To send a response, please click <b><a href='https://fyahevents.onrender.com/admin'>here</a></b>.</p>"
 
                 with app.open_resource('fyah_events_logo.jpg') as logo:
                     msg.attach('fyah_events_logo.jpg', 'image/jpeg', logo.read())
@@ -82,17 +84,17 @@ def sendSMS():
         txt = request.form.get('txt_content')
 
         from clockwork import clockwork
-        api = clockwork.API('9347aab600cbf889dac37eafbbff00c708a65e52',)	# this has been left blank to protect API identity
+        api = clockwork.API(os.getenv('SMS_API'),)	# this has been left blank to protect API identity
 
         message = clockwork.SMS(
-		    to = '447481790498',
+		    to = os.getenv('SMS_MOBILE'),
             message = f'From: {name}\nNumber: {number}\n\n{txt}\n\nFyah Events',
 		    from_name='Fyah Events') # from_name can max 11 characters long.
 
         response = api.send(message)
 
         if response.success:
-            flash(f"Thanks {name}, your text was successfully sent! You will recieve a qoutefrom Fyah Events © soon.")
+            flash(f"Thanks {name}, your text was successfully sent! You will recieve a qoute from Fyah Events © soon.")
             return render_template('sendSMS.html')
         else:
             error = "Something went wrong, please try again!"
@@ -106,7 +108,7 @@ def login():
     if request.method == 'GET':
         return render_template('login.html')
     else:
-        if admin == 'admin' and admin_pw == '1234':
+        if admin == os.getenv('ADMIN') and admin_pw == os.getenv('LOGIN_PW'):
             session['logged_in'] = True
             flash(f'Welcome back Fyah Events ©!')
             return redirect(url_for('admin'))
@@ -143,7 +145,7 @@ def email():
             msg = Message(f'{sub}', recipients=[email.lower()])
             # msg.body = f'Hi {person}!\n\nThank you for showing interest in Fyah Events ©.\n\n{content}\n\nKind regards\n\nFyah Events ©'
 
-            msg.html = f"<p>Hi {person}!</p><br><p>Thank you for showing interest in Fyah Events ©.</p><br><p>{content}</p><br><p>Kind regards</p><br><p><a href='https://www.bondrobotics.tech'>Fyah Events ©</a></b></p>"
+            msg.html = f"<p>Hi {person}!</p><br><p>Thank you for showing interest in Fyah Events ©.</p><br><p>{content}</p><br><p>Kind regards</p><br><p><a href='https://fyahevents.onrender.com/'>Fyah Events ©</a></b></p>"
 
             with app.open_resource('fyah_events_logo.jpg') as logo:
                 msg.attach('fyah_events_logo.jpg', 'image/jpeg', logo.read())
@@ -167,7 +169,7 @@ def sms():
         new_num = "".join(list_num)
 
         from clockwork import clockwork
-        api = clockwork.API('9347aab600cbf889dac37eafbbff00c708a65e52',)	# this has been left blank to protect API identity
+        api = clockwork.API(os.getenv('SMS_API'),)	# this has been left blank to protect API identity
 
         message = clockwork.SMS(
 		    to = f'{new_num}',
