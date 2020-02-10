@@ -40,12 +40,16 @@ def home():
         return render_template('home.html')
     else:
         name = request.form.get("name")
+        number = request.form.get("number")
+        mobile = request.form.get("mobile")
         email = request.form.get("email")
-        # this will be the email address that the message will be sent to
-        myEmail = 'design.build.apply@gmail.com'
         confirm = request.form.get("confirm")
         sub = request.form.get("subject")
         content = request.form.get("message_content")
+
+        # this will be the email address that the message will be sent to
+        myEmail = 'design.build.apply@gmail.com'
+
         if '@' not in email:
             error = 'Your message did not send. Please provide a valid email'
             return render_template('home.html', error=error)
@@ -58,7 +62,7 @@ def home():
                 return render_template('home.html', error=error)
         else:
             msg = Message(f'{sub}', recipients=[myEmail])
-            msg.html = f"<p>From: {name}<br>Email: {email}<br><br>Subject:{sub}<br><br>{content}<br><br>To send a response, please go click <b><a href='https://www.bondrobotics.tech'>here</a></b>.</p>"
+            msg.html = f"<p>From: {name}<br>Email: {email}<br>Contact Number: {number}<br>Mobile: {mobile}<br>Subject:{sub}<br><br>{content}<br><br>To send a response, please click <b><a href='https://www.bondrobotics.tech'>here</a></b>.</p>"
 
             with app.open_resource('fyah_events_logo.jpg') as logo:
                 msg.attach('fyah_events_logo.jpg', 'image/jpeg', logo.read())
