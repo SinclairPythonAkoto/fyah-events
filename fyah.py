@@ -48,7 +48,7 @@ def home():
         content = request.form.get("message_content")
 
         # this will be the email address that the message will be sent to
-        myEmail = 'design.build.apply@gmail.com'
+        myEmail = 'sinclair.python@gmail.com'
 
         if '@' not in email:
             error = 'Your message did not send. Please provide a valid email'
@@ -60,17 +60,17 @@ def home():
             if '@' not in email and '@' not in confirm:
                 error = 'Please provide a valid email'
                 return render_template('home.html', error=error)
-        else:
-            msg = Message(f'{sub}', recipients=[myEmail])
-            msg.html = f"<p>From: {name}<br>Email: {email}<br>Contact Number: {number}<br>Mobile: {mobile}<br>Subject:{sub}<br><br>{content}<br><br>To send a response, please click <b><a href='https://www.bondrobotics.tech'>here</a></b>.</p>"
+            else:
+                msg = Message(f'{sub}', recipients=[myEmail])
+                msg.html = f"<p>From: {name}<br>Email: {email}<br>Contact Number: {number}<br>Mobile Number: {mobile}<br><br>{content}<br><br>To send a response, please click <b><a href='https://www.bondrobotics.tech'>here</a></b>.</p>"
 
-            with app.open_resource('fyah_events_logo.jpg') as logo:
-                msg.attach('fyah_events_logo.jpg', 'image/jpeg', logo.read())
+                with app.open_resource('fyah_events_logo.jpg') as logo:
+                    msg.attach('fyah_events_logo.jpg', 'image/jpeg', logo.read())
 
-            mail.send(msg)
+                mail.send(msg)
 
-            flash(f'Thank you {name} for your message, Fyah Events © will respond to you soon!')
-            return redirect(url_for('home'))
+                flash(f'Thank you {name} for your message, Fyah Events © will respond to you soon!')
+                return redirect(url_for('home'))
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
