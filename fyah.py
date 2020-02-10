@@ -61,7 +61,7 @@ def home():
                 error = 'Please provide a valid email'
                 return render_template('home.html', error=error)
             else:
-                msg = Message(f'{sub}', recipients=[myEmail])
+                msg = Message(f'{sub}', recipients=[myEmail, 'info@fyahevents.com'])
                 msg.html = f"<p>From: {name}<br>Email: {email}<br>Contact Number: {number}<br>Mobile Number: {mobile}<br><br>{content}<br><br>To send a response, please click <b><a href='https://www.bondrobotics.tech'>here</a></b>.</p>"
 
                 with app.open_resource('fyah_events_logo.jpg') as logo:
