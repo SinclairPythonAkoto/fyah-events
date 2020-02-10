@@ -76,12 +76,12 @@
 <!-- Footer -->
 
 <footer class="w3-container w3-padding-32 w3-light-grey w3-center">
-  <a href="{{ url_for('home') }}" class="w3-button w3-black w3-margin"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  {% block footer %}{% endblock %}
   <h4>Find us on social media</h4>
   <div class="w3-xlarge w3-section">
     <a href="https://www.facebook.com/fyahevents"><i class="fab fa-facebook-f w3-hover-opacity" title="Visit our Facebook page"></i></a>
     <a href="https:www.instagram.com/fyahevents"><i class="fab fa-instagram w3-hover-opacity" title="Visit our Instagram page"></i></a>
-    <a href="#"><i class="fas fa-sms w3-hover-opacity" title="Click here to send us a message!"></i></a>
+    <a href="{{ url_for('sendSMS') }}"><i class="fas fa-sms w3-hover-opacity" title="Click here to send us a message!"></i></a>
   </div>
   <p>
     © 2018 Fyah Events

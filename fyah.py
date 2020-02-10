@@ -72,6 +72,10 @@ def home():
                 flash(f'Thank you {name} for your message, Fyah Events © will respond to you soon!')
                 return redirect(url_for('home'))
 
+@app.route('/sendSMS')
+def sendSMS():
+    return render_template('sendSMS.html')
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None

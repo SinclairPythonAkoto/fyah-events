@@ -1,17 +1,17 @@
-{% extends "adminlayout.html" %}
+{% extends "layout.html" %}
 
 {% block content %}
 
 <div class="w3-center w3-padding-64" id="sendMail">
   <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16 w3-text-white">Send SMS</span><br><br>
   <p class="w3-medium w3-text-white">
-    <em><b>Respond to your clients by sending them an SMS</b></em>
+    <em><b>Send us a text for a qoute!</b></em>
   </p>
 </div>
 
 <form action="#" method="post">
   <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Name" required name="name"></p>
-  <p><input class="w3-input w3-padding-16 w3-border" type="number" placeholder="Enter mobile number: eg 07123456789" required name="number"></p>
+  <p><input class="w3-input w3-padding-16 w3-border" type="number" placeholder="Your mobile number: 07123456789" required name="number"></p>
   <label class="w3-text-white" for="messageBox">Write your message below:</label>
   <textarea id="messageBox" class="w3-input w3-padding-16 w3-border" type="text" placeholder="Message" name="txt_content" rows="8" cols="50" title="Write your message here" required></textarea>
   <p>
@@ -26,5 +26,5 @@
 {% endblock %}
 
 {% block footer %}
-  <a href="{{ url_for('sms') }}" class="w3-button w3-black w3-margin"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  <a href="{{ url_for('sendSMS') }}" class="w3-button w3-black w3-margin"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
 {% endblock %}

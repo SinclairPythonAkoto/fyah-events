@@ -261,7 +261,7 @@
   <p class="w3-medium w3-text-white"><em>We'd love to hear from you, get in touch so we can respond back in due course</em></p>
   <p class="w3-xxlarge w3-text-white">
     <em class="w3-large w3-text-white">Please call us for a qoute</em><br>
-    0203 092 1995
+    <a href="{{ url_for('sendSMS') }}" title="Click here to send us a message!">0203 092 1995</a>
   </p>
 </div>
 
@@ -284,4 +284,8 @@
   </p>
 </form>
 
+{% endblock %}
+
+{% block footer %}
+  <a href="{{ url_for('home') }}" class="w3-button w3-black w3-margin"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
 {% endblock %}
