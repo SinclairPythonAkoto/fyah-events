@@ -108,7 +108,7 @@ def login():
     if request.method == 'GET':
         return render_template('login.html')
     else:
-        if admin == os.getenv('ADMIN') and admin_pw == os.getenv('LOGIN_PW'):
+        if admin == os.getenv('ADMIN') and admin_pw == os.getenv('GMAIL_PW'):
             session['logged_in'] = True
             flash(f'Welcome back Fyah Events ©!')
             return redirect(url_for('admin'))
