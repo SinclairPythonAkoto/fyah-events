@@ -184,5 +184,5 @@ def sms():
             error = "Something went wrong, please try again!"
             return render_template('sms.html', error=error)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# if __name__ == '__main__':
+#     app.run(debug=True)
