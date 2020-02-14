@@ -13,16 +13,16 @@ app.config.update(dict(
     MAIL_PORT = 587,
     MAIL_USE_TLS = True,
     MAIL_USE_SSL = False,
-    MAIL_USERNAME = os.getenv('GMAIL'),
-    MAIL_PASSWORD = os.getenv('GMAIL_PW'),
-    MAIL_DEFAULT_SENDER = ('Fyah Events ©', os.getenv('GMAIL')), #('NAME OR TITLE OF SENDER', 'SENDER EMAIL ADDRESS')
+    MAIL_USERNAME = os.getenv("GMAIL"),
+    MAIL_PASSWORD = os.getenv("GMAIL_PW"),
+    MAIL_DEFAULT_SENDER = ('Fyah Events ©', os.getenv("GMAIL")), #('NAME OR TITLE OF SENDER', 'SENDER EMAIL ADDRESS')
     MAIL_MAX_EMAILS = 25
 ))
 
 mail = Mail(app)
 
 # set session secret key
-app.secret_key = os.getenv('SECRET_KEY')
+app.secret_key = os.getenv("SECRET_KEY")
 
 # redirect to login
 def login_required(f):
@@ -50,7 +50,7 @@ def home():
         content = request.form.get("message_content")
 
         # this will be the email address that the messages will be sent to
-        myEmail = os.getenv('GMAIL')
+        myEmail = os.getenv("GMAIL")
 
         if '@' not in email:
             error = 'Your message did not send. Please provide a valid email'
@@ -84,10 +84,10 @@ def sendSMS():
         txt = request.form.get('txt_content')
 
         from clockwork import clockwork
-        api = clockwork.API(os.getenv('SMS_API'),)	# this has been left blank to protect API identity
+        api = clockwork.API(os.getenv("SMS_API"),)	# this has been left blank to protect API identity
 
         message = clockwork.SMS(
-		    to = os.getenv('SMS_MOBILE'),
+		    to = os.getenv("SMS_MOBILE"),
             message = f'From: {name}\nNumber: {number}\n\n{txt}\n\nFyah Events',
 		    from_name='Fyah Events') # from_name can max 11 characters long.
 
@@ -108,8 +108,7 @@ def login():
     if request.method == 'GET':
         return render_template('login.html')
     else:
-        if admin == os.getenv('ADMIN') and admin_pw == os.getenv('ADMIN_PW'):
-        # if admin == os.getenv('ADMIN') and admin_pw == os.getenv('GMAIL_PW'):
+        if admin == os.getenv("ADMIN") and admin_pw == os.getenv("ADMIN_PW"):
             session['logged_in'] = True
             flash(f'Welcome back Fyah Events ©!')
             return redirect(url_for('admin'))
@@ -168,7 +167,7 @@ def sms():
         new_num = "".join(list_num)
 
         from clockwork import clockwork
-        api = clockwork.API(os.getenv('SMS_API'),) # this has been left blank to protect API identity
+        api = clockwork.API(os.getenv("SMS_API"),) # this has been left blank to protect API identity
 
         message = clockwork.SMS(
 		    to = f'{new_num}',
