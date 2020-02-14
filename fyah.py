@@ -14,7 +14,7 @@ app.config.update(dict(
     MAIL_USE_TLS = True,
     MAIL_USE_SSL = False,
     MAIL_USERNAME = os.getenv(),#'sinclair.python@gmail.com',
-    MAIL_PASSWORD = os.getenv(),#'Python2020',
+    MAIL_PASSWORD = os.getenv(),
     MAIL_DEFAULT_SENDER = ('Fyah Events ©', os.getenv()),#'sinclair.python@gmail.com'), #('NAME OR TITLE OF SENDER', 'SENDER EMAIL ADDRESS')
     MAIL_MAX_EMAILS = 25
 ))
