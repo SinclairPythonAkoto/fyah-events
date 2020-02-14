@@ -15,7 +15,7 @@ app.config.update(dict(
     MAIL_USE_SSL = False,
     MAIL_USERNAME = os.getenv('GMAIL'),
     MAIL_PASSWORD = os.getenv('GMAIL_PW'),
-    MAIL_DEFAULT_SENDER = ('Fyah Events ©', os.getenv('GMAIL'), #('NAME OR TITLE OF SENDER', 'SENDER EMAIL ADDRESS')
+    MAIL_DEFAULT_SENDER = ('Fyah Events ©', os.getenv('GMAIL')), #('NAME OR TITLE OF SENDER', 'SENDER EMAIL ADDRESS')
     MAIL_MAX_EMAILS = 25
 ))
 
